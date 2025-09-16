@@ -91,6 +91,6 @@ jobs:
             docker run -d \
               --name "${CONTAINER_NAME}" \
               --restart=always \
-              -p 8080:80 \
+              -p 8085:80 \
               -v /resource:/resource \
               ${IMAGE_NAME}
