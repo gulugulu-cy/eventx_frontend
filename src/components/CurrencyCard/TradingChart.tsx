@@ -1,22 +1,20 @@
 import { CartesianGrid, Line, LineChart, XAxis } from "recharts"
-import { type ChartConfig, ChartContainer, ChartTooltip } from "@/components/ui/chart"
+import { ChartContainer, ChartTooltip } from "@/components/ui/chart"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
-export function TradingChart() {
+interface IChartData {
+    volume_1hrs_usd: number;
+    volume_1day_usd: number;
+    volume_1mth_usd: number;
+}
+export function TradingChart(props: IChartData) {
+    const { volume_1hrs_usd, volume_1day_usd, volume_1mth_usd } = props
 
     const chartData = [
-        { name: "1hour ago", quantity: 186, },
-        { name: "1day ago", quantity: 305, },
-        { name: "1month ago", quantity: 237, },
+        { name: "1hour ago", quantity: volume_1hrs_usd, },
+        { name: "1day ago", quantity: volume_1day_usd, },
+        { name: "1month ago", quantity: volume_1mth_usd, },
     ]
-
-    const chartConfig = {
-        quantity: {
-            label: "name",
-            color: "var(--chart-1)",
-        },
-    } satisfies ChartConfig
-
 
     return (
         <Card>
@@ -25,7 +23,12 @@ export function TradingChart() {
                 <CardDescription />
             </CardHeader>
             <CardContent>
-                <ChartContainer config={chartConfig}>
+                <ChartContainer config={{
+                    quantity: {
+                        label: "name",
+                        color: "var(--chart-1)",
+                    },
+                }}>
                     <LineChart
                         accessibilityLayer
                         data={chartData}

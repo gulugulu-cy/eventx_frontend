@@ -57,7 +57,11 @@ export function CurrencyCard({ data }: { data: IAssetsData }) {
                                 <div className="text-sm text-center mt-2 text-foreground/80">{onDateFormat(data?.data_trade_end)}</div>
                             </div>
                         </div>
-                        <TradingChart />
+                        <TradingChart
+                            volume_1day_usd={data?.volume_1day_usd || 0}
+                            volume_1hrs_usd={data?.volume_1hrs_usd || 0}
+                            volume_1mth_usd={data?.volume_1mth_usd || 0}
+                        />
                     </div>
                     <DialogFooter>
                         <DialogClose asChild>
